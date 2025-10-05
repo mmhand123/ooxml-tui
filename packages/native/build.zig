@@ -89,6 +89,8 @@ pub fn build(b: *std.Build) void {
     // by passing `--prefix` or `-p`.
     b.installArtifact(exe);
 
+    // This doesn't work with `main.zig` right now because we're using the root module `mod`
+    // above - which is `src/root.zig`. So when this compiles it doesn't compile `main.zig`
     const exe_check = b.addExecutable(.{
         .name = "check",
         .root_module = mod,
