@@ -176,3 +176,5 @@ dist
 
 # Ooxml temp files
 **/~*
+
+.zig-cache/
