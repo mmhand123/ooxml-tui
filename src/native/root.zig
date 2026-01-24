@@ -64,10 +64,11 @@ pub fn printZipTree(allocator: Allocator, abs_zip_path: []const u8) !void {
     var it = try zip.Iterator.init(&reader);
 
     // collect names
-    var names = std.ArrayList([]const u8).init(allocator);
+    var names: std.ArrayList([]const u8) = .empty;
+
     defer {
         for (names.items) |n| allocator.free(n);
-        names.deinit();
+        names.deinit(allocator);
     }
 
     // temp filename buffer (per entry) — length comes from Central Directory
