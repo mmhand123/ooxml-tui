@@ -2,6 +2,7 @@
   "name": "ooxml-tui",
   "type": "module",
   "scripts": {
+    "build": "zig run build:native",
     "build:native": "zig build",
     "dev": "bun --conditions=browser src/index.tsx"
   },
