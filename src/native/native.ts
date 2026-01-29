@@ -5,9 +5,9 @@
  * to be exposed to the Typescript side
  *
  */
-import { dlopen, CString } from "bun:ffi";
+import { dlopen, CString, suffix } from "bun:ffi";
 
-const native = dlopen("./zig-out/dist/ooxml-tui/libooxml-tui.so", {
+const native = dlopen(`./zig-out/dist/ooxml-tui/libooxml-tui.${suffix}`, {
   hello: {
     args: [],
     returns: "ptr",

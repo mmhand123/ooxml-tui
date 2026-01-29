@@ -7,7 +7,6 @@ const fs = std.fs;
 // Walk dir and find all OOXML files
 // Unzip to tmp (name = hash of full path?)
 // Create struct for storing the file structure
-//
 
 const DocumentType = enum { docx, xlsx };
 
