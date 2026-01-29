@@ -1,5 +1,7 @@
 # ooxml-tui
 
+This project is a TUI for interacting with, editing, and ultimately running diagnostics/fixes on the underlying OOXML that powers Office (primarily Word and Excel) documents.
+
 To install dependencies:
 
 ```bash
