@@ -178,3 +178,6 @@ dist
 **/~*
 
 .zig-cache/
+zig-out/
+
+.opencode/plans
