@@ -30,7 +30,9 @@ const HelloStruct = defineStruct([
   ["y", "u32"],
 ]);
 
-export function helloZigStruct(): { x: number; y: number } {
+type HelloStructType = ReturnType<(typeof HelloStruct)["unpack"]>;
+
+export function helloZigStruct(): HelloStructType {
   const helloStructPtr = native.symbols.helloStruct();
 
   if (!helloStructPtr) {
