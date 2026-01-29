@@ -13,7 +13,9 @@ const DocumentType = enum { docx, xlsx };
 const Document = struct { type: DocumentType, tmp_path: []const u8 };
 
 var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-const global_allocator = gpa.allocator();
+const globalAllocator = gpa.allocator();
+var arena = std.heap.ArenaAllocator.init(globalAllocator);
+const globalArena = arena.allocator();
 
 export fn hello() [*:0]const u8 {
     return "Hello from Zig!";
@@ -25,12 +27,12 @@ const ExternalStruct = extern struct {
 };
 
 export fn helloStruct() ?*ExternalStruct {
-    const hello_struct = global_allocator.create(ExternalStruct) catch return null;
+    const hello_struct = globalAllocator.create(ExternalStruct) catch return null;
 
     hello_struct.x = 5;
     hello_struct.y = 10;
 
-    errdefer global_allocator.destroy(hello_struct);
+    errdefer globalAllocator.destroy(hello_struct);
 
     return hello_struct;
 }
