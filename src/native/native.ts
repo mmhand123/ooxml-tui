@@ -5,23 +5,17 @@
  * to be exposed to the Typescript side
  *
  */
-import { dlopen, CString, suffix } from "bun:ffi";
+import { dlopen, suffix } from "bun:ffi";
 
 const native = dlopen(`./zig-out/dist/ooxml-tui/libooxml-tui.${suffix}`, {
   hello: {
     args: [],
-    returns: "ptr",
+    returns: "cstring",
   },
 });
 
 export function helloZig(): string {
-  const helloPtr = native.symbols.hello();
-
-  if (!helloPtr) {
-    throw new Error("Failed to get hello string from native library");
-  }
-
-  const hello = new CString(helloPtr);
+  const hello = native.symbols.hello();
 
   return hello.toString();
 }
